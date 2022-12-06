@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App()
+{
+    const [userInput, setUserInput] = useState();
+    const [stack, setStack] = useState([]);
+
+    return(
+        <div className="container">
+            <h1>Stack</h1>
+            <h2>Result: {stack.join(", ")}</h2>
+            <input type="text" onChange={HandleInput}></input>
+            <div className="buttonContainer">
+                <button className="mybuttonclass" onClick={AddToStack}>Add</button>
+                <button className="mybuttonclass" onClick={RemoveFromStack}>Remove</button>
+            </div>
+        </div>
+    )
+
+    function HandleInput(event)
+    {
+        setUserInput(event.target.value);
+    }
+
+    function AddToStack()
+    {
+        setStack(arr => [...arr, userInput]);
+    }
+
+    function RemoveFromStack()
+    {
+        let tempArr = stack;
+        tempArr.pop();
+        setStack([...tempArr]);
+    }
 }
 
 export default App;
